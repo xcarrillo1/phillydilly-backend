@@ -79,6 +79,19 @@ app.post("/post", async (req, res) => {
     }
 });
 
+// POST DELETE ROUTE
+app.delete("/post/:id", async (req, res) => {
+    try {
+        // send all posts
+        res.json(await Post.findByIdAndRemove(req.params.id));
+    } catch (error) {
+        // send error
+        res.status(400).json(error);
+    }
+});
+
+
+
 ///////////////////////////////
 // LISTENER
 ////////////////////////////////
