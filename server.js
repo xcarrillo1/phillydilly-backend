@@ -90,7 +90,18 @@ app.delete("/post/:id", async (req, res) => {
     }
 });
 
-
+// POST UPDATE ROUTE
+app.put("/post/:id", async (req, res) => {
+    try {
+        // send all posts
+        res.json(
+            await Post.findByIdAndUpdate(req.params.id, req.body, {new:true})
+        );
+    } catch (error) {
+        // send error
+        res.status(400).json(error);
+    }
+});
 
 ///////////////////////////////
 // LISTENER
